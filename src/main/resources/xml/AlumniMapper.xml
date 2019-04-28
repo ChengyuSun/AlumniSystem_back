@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.alumni.Mapper.AlumniMapper">
+
+    <resultMap id="resultListAlumni" type="com.example.alumni.Entity.Alumni">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="birthday" property="birthday"/>
+        <result column="admission" property="admission"/>
+        <result column="graduation" property="graduation"/>
+        <result column="city" property="city"/>
+        <result column="workplace" property="workplace"/>
+        <result column="job" property="job"/>
+        <result column="telephone" property="telephone"/>
+        <result column="email" property="email"/>
+        <result column="wechat" property="wechat"/>
+    </resultMap>
+
+    <!--<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.example.wildflyEntity.Alumni">-->
+        <!--<selectKey keyProperty="id" resultType="int">-->
+            <!--select LAST_INSERT_ID()-->
+        <!--</selectKey>-->
+        <!--INSERT INTO alumni VALUES(#{name},#{sex},#{birthday},#{admission},#{graduation},#{city},-->
+        <!--#{workplace},#{job},#{telephone},#{email},#{wechat} )-->
+    <!--</insert>-->
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.example.alumni.Entity.Alumni">
+        INSERT alumni(id,name,sex,birthday,admission,graduation,city,workplace,job,telephone,email,wechat)
+        VALUES (#{id},#{name},#{sex},#{birthday},#{admission},#{graduation},#{city},#{workplace},#{job},#{telephone},#{email},#{wechat})
+    </insert>
+
+    <select id="getAllAlumni" resultMap="resultListAlumni">
+        SELECT * FROM alumni
+    </select>
+
+    <select id="searchAlumniByName" resultMap="resultListAlumni">
+        SELECT * FROM alumni WHERE name like #{arg0}
+    </select>
+
+    <update id="update" parameterType="com.example.alumni.Entity.Alumni">
+        update alumni
+        set
+            name=#{name},
+            sex=#{sex},
+            birthday=#{birthday},
+            admission=#{admission},
+            graduation=#{graduation},
+            city=#{city},
+            workplace=#{workplace},
+            job=#{job},
+            telephone=#{telephone},
+            email=#{email},
+            wechat=#{wechat}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+      DELETE FROM alumni WHERE id=#{arg0}
+    </delete>
+</mapper>

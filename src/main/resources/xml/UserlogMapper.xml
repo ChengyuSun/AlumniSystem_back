@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.alumni.Mapper.UserlogMapper">
+
+    <insert id="login">
+        insert userlog(username,time,operation) values(#{username},#{time},#{operation})
+    </insert>
+
+    <insert id="logout">
+        insert userlog(username,time,operation) values(#{username},#{time},#{operation})
+    </insert>
+
+</mapper>
